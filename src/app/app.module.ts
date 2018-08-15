@@ -10,6 +10,8 @@ import { ToolboxComponent } from './components/toolbox/toolbox.component';
 // Routing module
 import {routing} from './app.routing';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MapaComponent,
     NavbarComponent,
     ToolboxComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

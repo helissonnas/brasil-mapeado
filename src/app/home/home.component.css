@@ -1,0 +1,52 @@
+#get-city {
+  top: 23vh;
+}
+
+#world {
+  position: absolute;
+  top: 12vh;
+  left: 36px;
+  width: 30vw;
+}
+
+input {
+  background-color: transparent;
+  color: azure;
+}
+
+input:hover {
+  background-color: rgba(255,246,242,0.11);
+  color: azure;
+}
+
+#buscar {
+  position: absolute;
+  right: 16px;
+  width: 30%;
+  background: linear-gradient(to right, #12D8FA 10%, #12D8FA 0%, #1FA2FF 100%);
+  color: azure;
+  border: 0;
+  border-radius: 1rem;
+}
+
+#buscar:hover {
+  background-position: right center;
+}
+
+#text {
+  color: #c4c2d8;
+  text-align: justify;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 760px){
+  #world {
+    display: none;
+  }
+}
+
+@media (max-width: 600px){
+  #buscar {
+    width: 60%;
+  }
+}

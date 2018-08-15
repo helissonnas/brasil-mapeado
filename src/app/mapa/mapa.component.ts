@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GeoCodingService} from '../services/geo-coding.service';
 
 @Component({
   selector: 'app-mapa',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private geoServ: GeoCodingService) { }
 
   ngOnInit() {
+
   }
 
 }
