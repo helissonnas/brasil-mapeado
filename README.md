@@ -1,7 +1,9 @@
-<img src=https://github.com/helissonnas/brasil-mapeado/src/assets/images/icon_logo.png />
-# BrasilMapeado
+<img src="src/assets/images/icon_logo.png" align="right" />
+
+# Brasil Mapeado
+
 > Mapeamento de equipamentos públicos
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
+>>This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
 # Clone with Git Bach
 
