@@ -14,6 +14,9 @@ export class HomeComponent implements OnInit {
   constructor(private geoServ: GeoCodingService) { }
 
   ngOnInit() {
+    // O angular travou a mudança dinamica da cor do body, fiz essa mudançca via DOM - helisson
+    document.body.style.backgroundColor = '#404966';
+
     if (this.geoServ.getGeoPosition()) {
 
     } else {

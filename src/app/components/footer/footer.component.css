@@ -1,5 +1,4 @@
 footer {
-  border-top: #299499 5px solid;
   background-color: #252e3f;
   position: absolute;
   width: 100%;
@@ -11,7 +10,7 @@ footer {
 }
 
 a {
-  color: #31aeb3;
+  color: #c4c2d8;
 }
 
 .autores {

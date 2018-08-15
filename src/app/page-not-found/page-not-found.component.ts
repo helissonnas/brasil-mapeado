@@ -7,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
+  image = 'assets/images/astro404.png';
   constructor() { }
 
   ngOnInit() {
-    console.log('Entrou na pagina 404');
+    // O angular travou a mudança dinamica da cor do body, fiz essa mudançca via DOM - helisson
+    document.body.style.backgroundColor = '#181b20';
+  }
+
+  voltar() {
+    window.history.back();
   }
 
 }

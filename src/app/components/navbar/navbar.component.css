@@ -23,6 +23,9 @@ a:hover {
   font-size: small;
 }
 
+.navbar-toggler {
+  color: #f8f3f8;
+}
 
 .subnavbar-custom {
   padding-top: 0;

@@ -1,0 +1,42 @@
+h1 {
+  font-family: 'Righteous', sans-serif;
+  font-size: 140px;
+  color: #33a5dd;
+  font-weight: bolder;
+  text-align: right;
+}
+
+h2 {
+  color: #99c8c7;
+  text-align: right;
+
+}
+
+#astro {
+  position: relative;
+  float: right;
+  width: 400px;
+  top: 30vh;
+  right: 30vw;
+}
+
+#bloco-1 {
+  top: 26vh;
+  text-align: justify;
+  font-size: 28px;
+  color: #dddddd;
+}
+
+.btn {
+  background: transparent;
+  border: #33a5dd 2px solid;
+  color: #33a5dd;
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+}
+
+.btn:hover {
+  color: #080911;
+  background: #33a5dd !important;
+}
