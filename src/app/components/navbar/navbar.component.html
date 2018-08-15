@@ -1,3 +1,29 @@
-<p>
-  navbar works!
-</p>
+<nav class="navbar navbar-expand-sm navbar-custom" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom"  (click)="esconde = !esconde">
+    <i class="fa fa-bars fa-lg py-1"></i>
+  </button>
+
+
+  <div class="navbar-brand">
+    <a href="/">
+      Brasil Mapeado
+    </a>
+    <img [src]="image" class="img-fluid" id="brand">
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <nav class="navbar navbar-expand-sm subnavbar-custom">
+
+    <div class="navbar-collapse" id="navbarCustom" [hidden]="esconde">
+      <ul class="navbar-nav" (click)="esconde = !esconde">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/sobre">SOBRE</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/dados">DADOS</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</nav>

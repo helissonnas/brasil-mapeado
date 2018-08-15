@@ -11,7 +11,7 @@ footer {
 }
 
 a {
-  color: #299499;
+  color: #31aeb3;
 }
 
 .autores {
@@ -36,5 +36,12 @@ a {
   .autores li {
     list-style-type: none;
     text-align: center;
+  }
+}
+
+
+@media (max-width: 400px) {
+  footer {
+    font-size: 12px;
   }
 }

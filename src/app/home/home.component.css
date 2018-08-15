@@ -40,13 +40,29 @@ input:hover {
 }
 
 @media (max-width: 760px){
+  #get-city {
+    top: 15vh;
+  }
+
   #world {
     display: none;
   }
 }
 
 @media (max-width: 600px){
+  #get-city {
+    top: 10vh;
+  }
+
   #buscar {
     width: 60%;
   }
 }
+
+
+@media (max-width: 400px) {
+  #get-city {
+    top: 5vh;
+  }
+}
+
