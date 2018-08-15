@@ -10,6 +10,7 @@ export class PageNotFoundComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('Entrou na pagina 404');
   }
 
 }
