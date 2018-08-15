@@ -1,16 +1,18 @@
-<./src/assets/images/icon_logo.png>
+<img src=https://github.com/helissonnas/brasil-mapeado/src/assets/images/icon_logo.png />
 # BrasilMapeado
 > Mapeamento de equipamentos públicos
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
 # Clone with Git Bach
 
-`echo "# brasil-mapeado" >> README.md
+```git
+echo "# brasil-mapeado" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/helissonnas/brasil-mapeado.git
-git push -u origin master`
+git push -u origin master
+```
 
 
 ## Development server
