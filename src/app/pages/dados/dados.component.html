@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div style="text-align:justify;">
+
+
+      <h1>Dados Abertos</h1>
+
+      As informações contidas nesse aplicativo estão disponíveis no <a href="http://www.dados.gov.br">
+      Portal Brasileiro de Dados Abertos</a>. Nosso objetivo ao disponibilizar essa aplicação é
+      que os cidadãos brasileiro possam encontrar e utilizar os dados e as informações públicas.
+
+      <br/><br/>
+
+      <h1>Sobre os Dados</h1>
+
+      O aplicativo exibe as informações de Equipamentos Públicos, que são as instalações e os espaços
+      físicos, públicos ou privados, onde é prestado de forma presencial algum tipo de serviço do poder
+      público à pessoa física ou jurídica. Os dados podem ser obtidos neste
+      <a href="http://dados.gov.br/tag/Equipamentos%20p%C3%BAblicos">link</a>.
+
+      <br/><br/>
+
+      Os dados foram obtidos em arquivos separados por vírgula (csv) e feito a carga desses dados em um Banco de Dados
+      com suporte espacial (PostgreSQL + PostGis). Os dados que disponha de latitude e longitude, foi necessário apenas
+      a criação de uma geometria com esse pontos; no entanto os dados que não contiam latitude nem longitude, como Cartórios,
+      Sistema Nacional de Empregos (SINE), Unidades de Atendimento da Receita Federal, Agências de atendimaneto do Ministério
+      do Trabalho e Emprego (MTE), Delegacias da Polícia Federal e Universidade Federais (extraídas dos dados sobre Instituições
+      de Ensino Superior - IES), foi realizado um geocoding (conversão de um endereço em uma localização geográfica) para então
+      ser criada a geometria com os pontos. Alertamos que a precisão do geocoding depende completude dos dados para correta conversão,
+      ou seja, os registros de dados	que continham endereço, bairro, município e estado tiveram sucesso na conversão ao contrário
+      dos registros que não detinham	todas essas informações.
+
+      <br/><br/>
+
+      Para realizar a conversão dos dados, foi utilizado uma <a href="https://code.google.com/p/gmaps-samples/source/browse/trunk/geocoder/java/GeocodingSample.java?r=2476">API Geocoding do Google Maps</a>.
+
+      <br/><br/>
+
+      <h1>Licença</h1>
+
+      A licença deste aplicativo é <a href="http://www.gnu.org/licenses/agpl-3.0.html">AGPL, versão 3</a>. <br/><br/>
+      O código da aplicação pode ser obtido no <a href="https://github.com/juliohenriquerocha/cidade-mapeada-lsi">GitHub <i class="fa fa-github"></i></a>
+
+      <br/><br/>
+    </div>
+  </div>
+</div>

@@ -3,15 +3,19 @@ import { NgModule } from '@angular/core';
 
 // Import Components here
 import { AppComponent } from './app.component';
-import { MapaComponent } from './mapa/mapa.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
+import { FooterComponent } from './components/footer/footer.component';
+
+// Import pages here
+import { MapaComponent } from './pages/mapa/mapa.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SobreComponent } from './pages/sobre/sobre.component';
+import { DadosComponent } from './pages/dados/dados.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // Routing module
 import {routing} from './app.routing';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,9 @@ import { FooterComponent } from './components/footer/footer.component';
     ToolboxComponent,
     PageNotFoundComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    SobreComponent,
+    DadosComponent
   ],
   imports: [
     BrowserModule,

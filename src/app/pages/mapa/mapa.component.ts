@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GeoCodingService} from '../services/geo-coding.service';
+import {GeoCodingService} from '../../services/geo-coding.service';
 
 @Component({
   selector: 'app-mapa',

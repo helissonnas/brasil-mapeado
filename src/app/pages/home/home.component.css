@@ -30,7 +30,7 @@ input:hover {
 }
 
 #buscar:hover {
-  background-position: right center;
+  background: linear-gradient(to right, #1fa2ff 10%, #1fa2ff 0%, #34c3c8 100%);
 }
 
 #text {

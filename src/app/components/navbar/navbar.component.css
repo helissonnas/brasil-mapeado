@@ -1,11 +1,14 @@
 a {
-  color: #fff6f2;
+  color: #dddddd;
 }
 
 a:hover {
   text-decoration: none;
 }
 
+nav {
+  background-color: #404966;
+}
 
 .navbar-text {
   margin-top: 4px;
@@ -24,7 +27,7 @@ a:hover {
 }
 
 .navbar-toggler {
-  color: #f8f3f8;
+  color: #33a5dd;
 }
 
 .subnavbar-custom {
@@ -42,13 +45,12 @@ a:hover {
 }
 
 .nav-item :hover {
-  color: #f8f3f8;
-  border-bottom: #12D8FA 4px solid;
+  color: #1fa2ff;
 }
 
 .nav-item.active {
   color: #f8f3f8 !important;
-  border-bottom: #12D8FA 4px solid;
+  border-bottom: #33a5dd 4px solid;
 }
 
 .navbar-text {
