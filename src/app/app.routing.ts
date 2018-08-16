@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
 import {MapaComponent} from './pages/mapa/mapa.component';
 import {HomeComponent} from './pages/home/home.component';
 import {SobreComponent} from './pages/sobre/sobre.component';

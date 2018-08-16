@@ -6,7 +6,6 @@ import {Router} from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-
 export class GeoCodingService {
 
   private _latitude;

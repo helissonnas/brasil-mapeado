@@ -13,10 +13,11 @@ import { MapaComponent } from './pages/mapa/mapa.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { DadosComponent } from './pages/dados/dados.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 // Routing module
 import {routing} from './app.routing';
+import {GeoCodingService} from './services/geo-coding.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import {routing} from './app.routing';
     FormsModule,
     routing
   ],
-  providers: [],
+  providers: [
+    GeoCodingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
