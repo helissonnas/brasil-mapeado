@@ -10,8 +10,7 @@ const APP_ROUTES: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sobre', component: SobreComponent},
   {path: 'dados', component: DadosComponent},
-  {path: 'mapa/:cidade', component: MapaComponent},
-  {path: 'mapa/:cidade', component: MapaComponent},
+  {path: 'mapa/:lat/:lng', component: MapaComponent},
   {path: '**', component: PageNotFoundComponent}
 
 ];

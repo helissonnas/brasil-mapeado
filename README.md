@@ -3,11 +3,23 @@
 # Brasil Mapeado
 
 > Mapeamento de equipamentos públicos
->>This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
-# Clone with Git Bach
+# Requisitos
 
-```git
+## Instale o NodeJS
+> Versão 8.11.x
+
+É possível baixar [aqui](https://nodejs.org/en/)
+
+## Instale o angular-cli
+
+```Shell
+npm install -g @angular/cli
+```
+
+# Clonando com Git Bach
+
+```Shell
 echo "# brasil-mapeado" >> README.md
 git init
 git add README.md
@@ -15,9 +27,9 @@ git commit -m "first commit"
 git remote add origin https://github.com/helissonnas/brasil-mapeado.git
 git push -u origin master
 ```
+>> Ou utilize alguma IDE
 
-
-## Development server
+## Servindo a aplicação
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {FormsModule} from '@angular/forms';
 
 // Import pages here
 import { MapaComponent } from './pages/mapa/mapa.component';
@@ -31,6 +32,7 @@ import {routing} from './app.routing';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     routing
   ],
   providers: [],
