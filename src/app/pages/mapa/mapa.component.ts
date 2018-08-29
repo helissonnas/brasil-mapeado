@@ -25,26 +25,25 @@ export class MapaComponent implements OnInit {
       this.lat = parseFloat(params['lat']);
       this.lng = parseFloat(params['lng']);
       if (this.lat && this.lng) {
+
         const starting_pos = ol.proj.transform([this.lng, this.lat], 'EPSG:4326', 'EPSG:900913');
+        const layers = this.addLayers();
 
         this.map = new ol.Map(
           {
-            controls: ol.control.defaults({
-              attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-                collapsible: false
-              })
-            }).extend([
-              new ol.control.ZoomToExtent({
-                extent: [
-                  813079.7791264898, 5929220.284081122,
-                  848966.9639063801, 5936863.986909639
-                ]
+            controls: ol.control.defaults().extend([
+              new ol.control.ScaleLine({
+                projection: 'EPSG:4326',
+                units : 'metric'
               })
             ]),
-
             layers: [
               new ol.layer.Tile({
                 source: new ol.source.OSM()
+              }),
+              new ol.layer.Group({
+                title : 'Equipamentos Públicos',
+                layers : layers,
               })
             ],
 
@@ -53,11 +52,17 @@ export class MapaComponent implements OnInit {
             view: new ol.View({
               projection: 'EPSG:900913',
               center: starting_pos,
-              zoom: 20
+              zoom: 16
             })
           });
 
           this.addLayers();
+
+          const switcher = new ol.control.LayerSwitcher();
+          const popup = new ol.Overlay.Popup();
+
+          this.map.addControl(switcher);
+          this.map.addOverlay(popup);
       }
     });
   }
@@ -66,6 +71,7 @@ export class MapaComponent implements OnInit {
     const metadata = [];
     metadata['icon'] = icon;
     const layer = new ol.layer.Tile({
+      title: name,
       source: new ol.source.TileWMS({
         url: environment.api.geoserverURL,
         params: {
@@ -85,7 +91,7 @@ export class MapaComponent implements OnInit {
     return layer;
   }
 
-  private addLayers() {
+  addLayers() {
     const ubs = this.getLayer('ubs', 'Unidades Básicas de Saúde', 'assets/images/ubsIcon.png');
     const creas = this.getLayer('creas', 'CREAS', 'assets/images/creasIcon.png');
     const cras = this.getLayer('cras', 'CRAS', 'assets/images/crasIcon.png');
@@ -101,10 +107,6 @@ export class MapaComponent implements OnInit {
     const mte = this.getLayer('mte', 'Agências de atendimento do Ministério do Trabalho e Emprego', 'assets/images/mteIcon.png');
     const dpf = this.getLayer('departamentopoliciafederal', 'Delegacias da Polícia Federal', 'assets/images/policiaFederalIcon.png');
 
-    const layers = [ubs, cras, creas, redeprivada, fundacentro, comunidadesTerapeuticas, cartorio, sine, receitaFederal, ies, mte, dpf];
-
-    layers.forEach((lay) => {
-      this.map.addLayer(lay);
-    });
+    return [ubs, cras, creas, redeprivada, fundacentro, comunidadesTerapeuticas, cartorio, sine, receitaFederal, ies, mte, dpf];
   }
 }

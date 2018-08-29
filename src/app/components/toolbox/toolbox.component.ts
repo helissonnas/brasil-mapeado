@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { GeoCodingService } from '../../services/geo-coding.service';
 
 @Component({
   selector: 'app-toolbox',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolboxComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mapaServ: GeoCodingService) { }
 
   ngOnInit() {
   }
