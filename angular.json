@@ -50,7 +50,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "brasil-mapeado:build"
+            "browserTarget": "brasil-mapeado:build",
+            "proxyConfig": "src/proxy.conf.js"
           },
           "configurations": {
             "production": {

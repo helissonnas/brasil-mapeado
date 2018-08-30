@@ -1,7 +1,8 @@
 export const environment = {
   production: true,
   api: {
-    geoserverURL: 'http://150.165.75.171:8080/geoserver/DadosAbertos/wms',
-    mapsApi: 'https://maps.googleapis.com/maps/api/geocode/json?'
+    geoserverURL: 'http://localhost:4200/geoserver',
+    mapsApi: 'https://maps.googleapis.com/maps/api/geocode/json?',
+    baseApi: 'http://localhost:8080/brasil-mapeado-webservice'
   }
 };

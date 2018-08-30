@@ -26,4 +26,15 @@
       </ul>
     </div>
   </nav>
+
+  <div *ngIf="caixaDePesquisa" class="col-sm-3 col-md-3 offset-4">
+    <div class="navbar-form" role="search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Cidade/Endereço desejada(o)" name="cidade" id="cidade" [(ngModel)]="cidade">
+        <div class="input-group-btn">
+          <button class="btn btn-default" type="submit" (click)="codeAdress()"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>

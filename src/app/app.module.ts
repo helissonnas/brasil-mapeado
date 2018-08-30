@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 // Routing module
 import {routing} from './app.routing';
 import {GeoCodingService} from './services/geo-coding.service';
+import { AvaliacaoService } from './services/avaliacao.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {GeoCodingService} from './services/geo-coding.service';
     routing
   ],
   providers: [
-    GeoCodingService
+    GeoCodingService,
+    AvaliacaoService
   ],
   bootstrap: [AppComponent]
 })

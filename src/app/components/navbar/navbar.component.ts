@@ -1,4 +1,5 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, Input} from '@angular/core';
+import { GeoCodingService } from '../../services/geo-coding.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,17 +8,24 @@ import {Component, HostListener, OnInit} from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  @Input()
+  caixaDePesquisa: boolean;
   image = 'assets/images/icon_logo.png';
   esconde = false;
+  cidade;
   private innerWidth: number;
 
 
-  constructor() { }
+  constructor(private geoServ: GeoCodingService) { }
 
   ngOnInit() {
     if  (window.screen.width < 600) {
       this.esconde = true;
     }
+  }
+
+  codeAdress() {
+    this.geoServ.findFromAddress(this.cidade);
   }
 
   @HostListener('window:resize', ['$event'])

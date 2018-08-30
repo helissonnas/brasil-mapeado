@@ -65,7 +65,6 @@ nav {
   margin-left: 3%;
 }
 
-
 @media (max-height: 675px) {
   .navbar-custom {
     z-index: 2;

@@ -198,7 +198,6 @@
         	var metadata = lyr.get('metadata');
         	label.className = 'label-grupo';
 
-            console.log(lyr);
         	//adicionar botões de plantio, player, geral e excluir
         	if(metadata != null){
         		var divOpcao = document.createElement('div');

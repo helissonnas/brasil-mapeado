@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {GeoCodingService} from '../../services/geo-coding.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
+import { AvaliacaoService } from '../../services/avaliacao.service';
 
 declare var ol: any;
 
@@ -15,21 +16,26 @@ export class MapaComponent implements OnInit {
   ol: any;
   lat;
   lng;
-  map;
 
   constructor(private geoServ: GeoCodingService,
+              private avService: AvaliacaoService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.lat = parseFloat(params['lat']);
       this.lng = parseFloat(params['lng']);
+
       if (this.lat && this.lng) {
 
         const starting_pos = ol.proj.transform([this.lng, this.lat], 'EPSG:4326', 'EPSG:900913');
         const layers = this.addLayers();
-
-        this.map = new ol.Map(
+        const view = new ol.View({
+          projection: 'EPSG:900913',
+          center: starting_pos,
+          zoom: 16
+        });
+        const map = new ol.Map(
           {
             controls: ol.control.defaults().extend([
               new ol.control.ScaleLine({
@@ -49,11 +55,7 @@ export class MapaComponent implements OnInit {
 
             target: 'map',
 
-            view: new ol.View({
-              projection: 'EPSG:900913',
-              center: starting_pos,
-              zoom: 16
-            })
+            view: view
           });
 
           this.addLayers();
@@ -61,9 +63,42 @@ export class MapaComponent implements OnInit {
           const switcher = new ol.control.LayerSwitcher();
           const popup = new ol.Overlay.Popup();
 
-          this.map.addControl(switcher);
-          this.map.addOverlay(popup);
-      }
+          map.addControl(switcher);
+
+          const overlay = new ol.Overlay({
+            element: document.getElementById('info'),
+            positioning: 'bottom-left'
+          });
+
+          overlay.setMap(map);
+
+          map.on('singleclick', function(evt) {
+            const pixel = map.getEventPixel(evt.originalEvent);
+            const camada = map.forEachLayerAtPixel(pixel, function(item) {
+              return item;
+            });
+
+            if (camada) {
+              const url = camada.getSource().getGetFeatureInfoUrl(evt.coordinate,
+                  view.getResolution(), 'EPSG:4326', {
+                'INFO_FORMAT' : 'application/json'
+              });
+              if (url) {
+                console.log(url);
+              }
+            }
+            /*
+            const ftr = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+              overlay.setPosition(evt.coordinate);
+              overlay.getElement().innerHTML = feature.get('name');
+              console.log(feature);
+              return feature;
+            });
+            overlay.getElement().style.display = ftr ? '' : 'none';
+            document.body.style.cursor = ftr ? 'pointer' : '';
+            */
+          });
+        }
     });
   }
 
