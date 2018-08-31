@@ -1,5 +1,63 @@
 <app-navbar [caixaDePesquisa]="true"></app-navbar>
 
 <div id="map" class="map">
-    <app-toolbox id="info"></app-toolbox>
+        <ng-template #modal class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div *ngIf="equipamento?.tipo === 'ubs'">
+                            <!-- CABECARIO -->
+                            <div class="row">
+                                <div class="col-3">
+                                    <img [src]="'assets/images/ubsIcon.png'" class="equip-logo">
+                                </div>
+                                <div class="col-9">
+                                    <div class="modal-title">{{equipamento?.nome}}</div>
+                                </div>
+                            </div>
+                    
+                            <!-- INFORMACOES -->
+                            <div class="row">
+                                <label for="endereco-ubs">Endereço</label>
+                                <div id="endereco-ubs">
+                                    {{equipamento?.endereco}}
+                                </div>
+                            <div class="row aval">
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="estFis">Estrutura Física</label>
+                                    <div class="row" id="estFis">
+                                        <div *ngFor="let i of analisaDesempenho(equipamento.estruturafisica)">
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="defId">Adaptação de Deficientes Idosos</label>
+                                    <div class="row" id="defId">
+                                        <div *ngFor="let i of analisaDesempenho(equipamento.adaptacaodeficientesidosos)">
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6"></div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                            <form>
+                                <div class="form-group">
+                                    <label for="text">Comentar</label>
+                                    <textarea cols="4" id="text" maxlength="240" name="comentario" [(ngModel)]="ava.comentario" class="form-control col-12"></textarea>
+                                </div>
+                                <div class="form-group-lg">
+                                    <label for="telefoneAvaliador">Telefone</label>                        
+                                    <input type="tel" id="telefoneAvaliador" class="form-control" name="telefoneAvaliador" [(ngModel)]="ava.telefoneAvaliador">  
+                                </div>
+                                <button class="btn btn-block" (click)="comentar()">ENVIAR</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
 </div>

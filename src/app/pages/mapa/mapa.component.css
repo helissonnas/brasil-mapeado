@@ -4,3 +4,34 @@
   height: 94vh;
   z-index: 0;
 }
+
+.modal-title {
+  font-weight: bolder;
+}
+
+.equip-logo {
+  float: left;
+  left: 0;
+  width: 50px;
+}
+
+.modal-dialog {
+  margin: 16px;
+  padding: 16px;
+}
+
+.modal {
+  width: 50vw;
+}
+
+.aval {
+  font-size: smaller;
+}
+
+#estFis {
+  text-align: center;
+}
+
+#defId {
+  text-align: center;
+}

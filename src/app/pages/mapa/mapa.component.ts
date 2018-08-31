@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ElementRef, ViewChild } from '@angular/core';
 import {GeoCodingService} from '../../services/geo-coding.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import { AvaliacaoService } from '../../services/avaliacao.service';
+import axios from 'axios';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Avaliacao } from '../../models/avaliacao';
 
 declare var ol: any;
 
@@ -13,12 +16,19 @@ declare var ol: any;
 })
 export class MapaComponent implements OnInit {
 
+  @ViewChild('modal')
+  modal: ElementRef;
+
   ol: any;
   lat;
   lng;
+  modalRef: BsModalRef;
+  equipamento;
+  ubs = 'assets/images/ubsicon.png';
+  ava: Avaliacao = new Avaliacao();
 
-  constructor(private geoServ: GeoCodingService,
-              private avService: AvaliacaoService,
+  constructor(private avService: AvaliacaoService,
+              private modalService: BsModalService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -72,34 +82,39 @@ export class MapaComponent implements OnInit {
 
           overlay.setMap(map);
 
+          const instance = this;
           map.on('singleclick', function(evt) {
             const pixel = map.getEventPixel(evt.originalEvent);
             const camada = map.forEachLayerAtPixel(pixel, function(item) {
               return item;
             });
 
-            if (camada) {
+            if (camada && camada.getSource()) {
+              console.log();
+              const qLay = camada.getSource().getParams().layers;
               const url = camada.getSource().getGetFeatureInfoUrl(evt.coordinate,
-                  view.getResolution(), 'EPSG:4326', {
-                'INFO_FORMAT' : 'application/json'
-              });
+                  view.getResolution(),
+                  view.getProjection(),
+                  {
+                    'INFO_FORMAT' : 'application/json',
+                    'QUERY_LAYERS' : qLay
+                  }
+                );
               if (url) {
-                console.log(url);
+                axios.get(url).then((response) => {
+                  instance.equipamento = response.data.features[0].properties;
+                  instance.equipamento.tipo = qLay.substring(qLay.lastIndexOf(':') + 1);
+                  instance.openModal();
+                });
               }
             }
-            /*
-            const ftr = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
-              overlay.setPosition(evt.coordinate);
-              overlay.getElement().innerHTML = feature.get('name');
-              console.log(feature);
-              return feature;
-            });
-            overlay.getElement().style.display = ftr ? '' : 'none';
-            document.body.style.cursor = ftr ? 'pointer' : '';
-            */
           });
         }
     });
+  }
+
+  openModal() {
+    this.modalRef = this.modalService.show(this.modal, {class: 'modal-sm'});
   }
 
   getLayer(layerName, name, icon) {
@@ -143,5 +158,32 @@ export class MapaComponent implements OnInit {
     const dpf = this.getLayer('departamentopoliciafederal', 'Delegacias da Polícia Federal', 'assets/images/policiaFederalIcon.png');
 
     return [ubs, cras, creas, redeprivada, fundacentro, comunidadesTerapeuticas, cartorio, sine, receitaFederal, ies, mte, dpf];
+  }
+
+  analisaDesempenho(desempenho) {
+    switch (desempenho) {
+      case 'Desempenho muito acima da média':
+        return new Array(5);
+      case 'Desempenho acima da média':
+        return new Array(4);
+      case 'Desempenho mediano ou  um pouco abaixo da média':
+        return new Array(3);
+      case 'Desempenho abaixo da média':
+        return new Array(2);
+      case 'Desempenho muito abaixo da média':
+        return new Array(1);
+      default:
+        return new Array(0);
+    }
+  }
+
+  comentar() {
+    this.ava.servicoId = this.equipamento.id;
+    this.ava.camada = this.equipamento.tipo;
+    this.ava.data = new Date();
+
+    this.avService.post(this.ava).then((response) => {
+      console.log(response.data);
+    });
   }
 }

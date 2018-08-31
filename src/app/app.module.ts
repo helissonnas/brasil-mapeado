@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 // Import Components here
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ToolboxComponent } from './components/toolbox/toolbox.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {FormsModule} from '@angular/forms';
 
@@ -19,13 +18,13 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import {routing} from './app.routing';
 import {GeoCodingService} from './services/geo-coding.service';
 import { AvaliacaoService } from './services/avaliacao.service';
+import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapaComponent,
     NavbarComponent,
-    ToolboxComponent,
     PageNotFoundComponent,
     HomeComponent,
     FooterComponent,
@@ -35,7 +34,9 @@ import { AvaliacaoService } from './services/avaliacao.service';
   imports: [
     BrowserModule,
     FormsModule,
-    routing
+    routing,
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     GeoCodingService,
