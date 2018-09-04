@@ -9,4 +9,8 @@ export class AvaliacaoService extends RestService {
   constructor() {
     super('avaliacao');
    }
+
+   getAllByServico(id) {
+     return super.get('servico', id);
+   }
 }

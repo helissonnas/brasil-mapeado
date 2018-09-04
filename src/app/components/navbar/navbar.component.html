@@ -6,35 +6,39 @@
 
 
   <div class="navbar-brand">
+    <img [src]="image" class="img-fluid" id="brand">
     <a href="/">
       Brasil Mapeado
     </a>
-    <img [src]="image" class="img-fluid" id="brand">
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <nav class="navbar navbar-expand-sm subnavbar-custom">
-
+    
     <div class="navbar-collapse" id="navbarCustom" [hidden]="esconde">
       <ul class="navbar-nav" (click)="esconde = !esconde">
+        
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/sobre">SOBRE</a>
         </li>
+        
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/dados">DADOS</a>
         </li>
+    
       </ul>
     </div>
-  </nav>
 
-  <div *ngIf="caixaDePesquisa" class="col-sm-3 col-md-3 offset-4">
-    <div class="navbar-form" role="search">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Cidade/Endereço desejada(o)" name="cidade" id="cidade" [(ngModel)]="cidade">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit" (click)="codeAdress()"><i class="fa fa-search"></i></button>
-        </div>
+  </nav>
+</nav>
+
+<div *ngIf="caixaDePesquisa" id="caixaPesquisa" class="col-sm-10 col-md-3 offset-sm-2 offset-md-9">
+  <div class="navbar-form" role="search">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Cidade/Endereço desejada(o)" name="cidade" id="cidade" [(ngModel)]="cidade">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit" (click)="codeAdress()"><i class="fa fa-search"></i></button>
       </div>
     </div>
   </div>
-</nav>
+</div>

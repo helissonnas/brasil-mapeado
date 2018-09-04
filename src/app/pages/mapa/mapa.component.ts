@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ElementRef, ViewChild } from '@angular/core';
 import {GeoCodingService} from '../../services/geo-coding.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import { AvaliacaoService } from '../../services/avaliacao.service';
 import axios from 'axios';
@@ -26,10 +26,12 @@ export class MapaComponent implements OnInit {
   equipamento;
   ubs = 'assets/images/ubsicon.png';
   ava: Avaliacao = new Avaliacao();
+  avaliacao = 0;
 
   constructor(private avService: AvaliacaoService,
               private modalService: BsModalService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -43,16 +45,10 @@ export class MapaComponent implements OnInit {
         const view = new ol.View({
           projection: 'EPSG:900913',
           center: starting_pos,
-          zoom: 16
+          zoom: 14
         });
         const map = new ol.Map(
           {
-            controls: ol.control.defaults().extend([
-              new ol.control.ScaleLine({
-                projection: 'EPSG:4326',
-                units : 'metric'
-              })
-            ]),
             layers: [
               new ol.layer.Tile({
                 source: new ol.source.OSM()
@@ -114,7 +110,7 @@ export class MapaComponent implements OnInit {
   }
 
   openModal() {
-    this.modalRef = this.modalService.show(this.modal, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(this.modal, {class: 'modal-dialog modal-lg'});
   }
 
   getLayer(layerName, name, icon) {
@@ -160,30 +156,38 @@ export class MapaComponent implements OnInit {
     return [ubs, cras, creas, redeprivada, fundacentro, comunidadesTerapeuticas, cartorio, sine, receitaFederal, ies, mte, dpf];
   }
 
-  analisaDesempenho(desempenho) {
-    switch (desempenho) {
-      case 'Desempenho muito acima da média':
-        return new Array(5);
-      case 'Desempenho acima da média':
-        return new Array(4);
-      case 'Desempenho mediano ou  um pouco abaixo da média':
-        return new Array(3);
-      case 'Desempenho abaixo da média':
-        return new Array(2);
-      case 'Desempenho muito abaixo da média':
-        return new Array(1);
-      default:
-        return new Array(0);
+  analisaDesempenho(valor) {
+    if (valor > this.avaliacao) {
+      return 'fa fa-star-o';
     }
+
+    return 'fa fa-star';
+  }
+
+  avaliar(valor) {
+    this.avaliacao = valor;
   }
 
   comentar() {
     this.ava.servicoId = this.equipamento.id;
     this.ava.camada = this.equipamento.tipo;
     this.ava.data = new Date();
+    this.ava.curtidas = 0;
+    this.ava.descurtidas = 0;
+    this.ava.avaliacao = this.avaliacao;
 
     this.avService.post(this.ava).then((response) => {
-      console.log(response.data);
+      if (response.status === 200) {
+        window.location.reload();
+      }
     });
+  }
+
+  verComentarios() {
+    const eqp = JSON.stringify(this.equipamento);
+    window.localStorage.setItem('equipamento', eqp);
+
+    this.modalRef.hide();
+    this.router.navigate(['/comentarios']);
   }
 }

@@ -1,62 +1,368 @@
 <app-navbar [caixaDePesquisa]="true"></app-navbar>
 
 <div id="map" class="map">
-        <ng-template #modal class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div *ngIf="equipamento?.tipo === 'ubs'">
-                            <!-- CABECARIO -->
-                            <div class="row">
-                                <div class="col-3">
-                                    <img [src]="'assets/images/ubsIcon.png'" class="equip-logo">
-                                </div>
-                                <div class="col-9">
-                                    <div class="modal-title">{{equipamento?.nome}}</div>
-                                </div>
+        <ng-template #modal>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div *ngIf="equipamento?.tipo === 'ubs'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="'assets/images/ubsIcon.png'" class="equip-logo">
                             </div>
-                    
-                            <!-- INFORMACOES -->
-                            <div class="row">
-                                <label for="endereco-ubs">Endereço</label>
-                                <div id="endereco-ubs">
-                                    {{equipamento?.endereco}}
-                                </div>
-                            <div class="row aval">
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="estFis">Estrutura Física</label>
-                                    <div class="row" id="estFis">
-                                        <div *ngFor="let i of analisaDesempenho(equipamento.estruturafisica)">
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="defId">Adaptação de Deficientes Idosos</label>
-                                    <div class="row" id="defId">
-                                        <div *ngFor="let i of analisaDesempenho(equipamento.adaptacaodeficientesidosos)">
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6"></div>
+                            <div class="col-9">
+                                <div class="modal-title">{{equipamento?.nome}}</div>
                             </div>
                         </div>
-                        </div>
-                        <div class="modal-footer">
-                            <form>
-                                <div class="form-group">
-                                    <label for="text">Comentar</label>
-                                    <textarea cols="4" id="text" maxlength="240" name="comentario" [(ngModel)]="ava.comentario" class="form-control col-12"></textarea>
-                                </div>
-                                <div class="form-group-lg">
-                                    <label for="telefoneAvaliador">Telefone</label>                        
-                                    <input type="tel" id="telefoneAvaliador" class="form-control" name="telefoneAvaliador" [(ngModel)]="ava.telefoneAvaliador">  
-                                </div>
-                                <button class="btn btn-block" (click)="comentar()">ENVIAR</button>
-                            </form>
+                
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-6">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone}}
+                            </div>
                         </div>
                     </div>
+
+                    <div *ngIf="equipamento?.tipo === 'cartorio'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="'assets/images/cartorioIcon.png'" class="equip-logo">
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-title">{{equipamento.nomefantasia? equipamento.nomefantasia : equipamento.nomeoficial}}</div>
+                            </div>
+                        </div>
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-calendar"></i>
+                                {{equipamento?.horariofuncionamento}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone}}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="equipamento?.tipo === 'comunidadesTerapeuticas'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                                <div class="col-3">
+                                    <img [src]="'assets/images/comunidadeTerapeuticaIcon.png'" class="equip-logo">
+                                </div>
+                                <div class="col-9">
+                                    <div class="modal-title">{{equipamento?.nomeInstituicao}}</div>
+                                </div>
+                        </div>
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-calendar"></i>
+                                {{equipamento.horariofuncionamento? equipamento.horariofuncionamento : 'Não Informado'}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone1}} / {{equipamento?.telefone2}}
+                            </div>
+                        </div>
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4" title="Público atendido">
+                                <i class="fa fa-users"></i>
+                                {{equipamento?.publicoAtendido}}
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-envelope"></i>
+                                {{equipamento.email ? equipamento.email : 'Não Informado'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="equipamento?.tipo === 'cras'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <img [src]="'assets/images/crasIcon.png'" class="equip-logo">
+                        </div>
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-envelope"></i>
+                                {{equipamento.email ? equipamento.email : 'Não Informado'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="equipamento?.tipo === 'creas'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <img [src]="'assets/images/creasIcon.png'" class="equip-logo">
+                        </div>
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento.telefone ? equipamento.telefone : 'Não Informado'}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-envelope"></i>
+                                {{equipamento.email ? equipamento.email : 'Não Informado'}}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="equipamento?.tipo === 'departamentopoliciafederal'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="'assets/images/policiaFederalIcon.png'" class="equip-logo">
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-title">{{equipamento?.nome}}</div>
+                            </div>
+                        </div>
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone1}} / {{equipamento?.telefone2}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-envelope"></i>
+                                {{equipamento.email ? equipamento.email : 'Não Informado'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="equipamento?.tipo === 'fundacentro'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="'assets/images/fundacentroIcon.png'" class="equip-logo">
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-title">{{equipamento?.nome}}</div>
+                            </div>
+                        </div>
+
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-calendar"></i>
+                                {{equipamento.horariofuncionamento? equipamento.horariofuncionamento : 'Não Informado'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="equipamento?.tipo === 'ies'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="'assets/images/iesIcon.png'" class="equip-logo">
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-title">{{equipamento?.nome}}</div>
+                            </div>
+                        </div>
+
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-envelope"></i>
+                                {{equipamento.email ? equipamento.email : 'Não Informado'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="equipamento?.tipo === 'mte'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="'assets/images/mteIcon.png'" class="equip-logo">
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-title">{{equipamento?.unidade}}</div>
+                            </div>
+                        </div>
+
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="equipamento?.tipo === 'redeprivada'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="'assets/images/assistenciaSocialIcon.png'" class="equip-logo">
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-title">{{equipamento?.unidade}}</div>
+                            </div>
+                        </div>
+
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="equipamento?.tipo === 'receitafederal'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-4 offset-4">
+                                <img [src]="'assets/images/receitaFederalIcon.png'" class="equip-logo">
+                            </div>
+                        </div>
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-4">
+                                <i class="fa fa-envelope"></i>
+                                {{equipamento.email ? equipamento.email : 'Não Informado'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="equipamento?.tipo === 'sine'">
+                        <!-- CABECARIO -->
+                        <div class="row">
+                            <div class="col-3">
+                                <img [src]="'assets/sineIcon.png'" class="equip-logo">
+                            </div>
+                            <div class="col-9">
+                                <div class="modal-title">{{equipamento?.nome}}</div>
+                            </div>
+                        </div>
+
+
+                        <!-- INFORMACOES -->
+                        <div class="row infos">
+                            
+                            <div class="col-sm-12 col-md-6">
+                                <i class="fa fa-map-pin"></i>
+                                {{equipamento?.endereco}}
+                            </div>
+
+                            <div class="col-sm-12 col-md-6">
+                                <i class="fa fa-phone"></i>
+                                {{equipamento?.telefone}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="row">
+                        <div class="col-sm-12 col-md-8">
+                            <div class="form-group">
+                                <label for="text">Comentar</label>
+                                <textarea cols="4" id="text" maxlength="240" name="comentario" [(ngModel)]="ava.comentario" class="form-control col-12"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group">
+                                <label for="avaliacao">Avaliação</label>
+                                <div id="avaliacao">
+                                    <i [ngClass]="analisaDesempenho(1)" (click)="avaliar(1)"></i>
+                                    <i [ngClass]="analisaDesempenho(2)" (click)="avaliar(2)"></i>
+                                    <i [ngClass]="analisaDesempenho(3)" (click)="avaliar(3)"></i>
+                                    <i [ngClass]="analisaDesempenho(4)" (click)="avaliar(4)"></i>
+                                    <i [ngClass]="analisaDesempenho(5)" (click)="avaliar(5)"></i>
+                                </div>                        
+                            </div>
+                            <div class="form-group">
+                                <label for="telefoneAvaliador">Telefone</label>                        
+                                <input type="tel" id="telefoneAvaliador" class="form-control" name="telefoneAvaliador" [(ngModel)]="ava.telefoneAvaliador">  
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" (click)="comentar()">ENVIAR</button>
+                    <button class="btn btn-outline-primary" (click)="verComentarios()">VER COMENTÁRIOS</button>
                 </div>
             </div>
         </ng-template>

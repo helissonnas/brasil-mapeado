@@ -27,6 +27,10 @@ export class RestService {
     }
   }
 
+  get(route, argument) {
+    return axios.get(`${this.RESOURCE}/${route}/${argument}`);
+  }
+
   post(obj) {
     if (obj) {
       return axios.post(this.RESOURCE, obj);

@@ -7,7 +7,7 @@ export class Avaliacao {
     id: number;
     avaliacao: number;
     comentario: string;
-    data: Date;
+    data: any;
     camada: string;
     servicoId: number;
     telefoneAvaliador;

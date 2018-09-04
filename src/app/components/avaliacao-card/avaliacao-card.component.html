@@ -1,0 +1,29 @@
+<div class="card card-2">
+  <div class="container-fluid">
+    <div class="data">
+      {{dataFormatada()}}
+    </div>
+    <div class="avaliacao">
+        <i [ngClass]="analisaDesempenho(1)"></i>
+        <i [ngClass]="analisaDesempenho(2)"></i>
+        <i [ngClass]="analisaDesempenho(3)"></i>
+        <i [ngClass]="analisaDesempenho(4)"></i>
+        <i [ngClass]="analisaDesempenho(5)"></i>
+    </div>
+    <div class="row coment">
+      <p>
+        {{avaliacao.comentario}}
+      </p>
+      <div class="separator"></div>
+    </div>
+    <div class="row foo">
+      <div class="col-7 tel">
+            {{avaliacao.telefoneAvaliador}}
+      </div>
+      <div class="col-5 pull-right  curt-row">
+            {{avaliacao.curtidas}} <i class="fa fa-thumbs-o-up"></i>
+            {{avaliacao.descurtidas}} <i class="fa fa-thumbs-o-down"></i>
+      </div>
+    </div>
+  </div>
+</div>

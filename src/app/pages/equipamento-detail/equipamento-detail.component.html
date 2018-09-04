@@ -1,0 +1,349 @@
+<app-navbar [caixaDePesquisa]="false"></app-navbar>
+<div class="container">
+  <div *ngIf="equip.tipo === 'ubs'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/ubsIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.nome}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-6">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+    
+            <div class="col-sm-12 col-md-6">
+                <i class="fa fa-phone"></i>
+                {{equip?.telefone}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'cartorio'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/cartorioIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip.nomefantasia? equip.nomefantasia : equip.nomeoficial}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-calendar"></i>
+                {{equip?.horariofuncionamento}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-phone"></i>
+                {{equip?.telefone}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'comunidadesTerapeuticas'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/comunidadeTerapeuticaIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.nome}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-calendar"></i>
+                {{equip.horariofuncionamento? equip.horariofuncionamento : 'Não Informado'}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-phone"></i>
+                {{equip?.telefone1}} / {{equip?.telefone2}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4" title="Público atendido">
+                <i class="fa fa-users"></i>
+                {{equip?.publicoAtendido}}
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-envelope"></i>
+                {{equip.email ? equip.email : 'Não Informado'}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'cras'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/crasIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.nome}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-phone"></i>
+                {{equip?.telefone}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-envelope"></i>
+                {{equip.email ? equip.email : 'Não Informado'}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'creas'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/creasIcon.png'" class="equip-logo">
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-phone"></i>
+                {{equip.telefone ? equip.telefone : 'Não Informado'}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-envelope"></i>
+                {{equip.email ? equip.email : 'Não Informado'}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'departamentopoliciafederal'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/policiaFederalIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.nome}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-phone"></i>
+                {{equip?.telefone1}} / {{equip?.telefone2}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-envelope"></i>
+                {{equip.email ? equip.email : 'Não Informado'}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'fundacentro'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/fundacentroIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.nome}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-phone"></i>
+                {{equip?.telefone}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-calendar"></i>
+                {{equip.horariofuncionamento? equip.horariofuncionamento : 'Não Informado'}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'ies'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/iesIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.nome}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-phone"></i>
+                {{equip?.telefone}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-envelope"></i>
+                {{equip.email ? equip.email : 'Não Informado'}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'mte'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/mteIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.unidade}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'receitafederal'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/receitaFederalIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.nome}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-phone"></i>
+                {{equip?.telefone}}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-envelope"></i>
+                {{equip.email ? equip.email : 'Não Informado'}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'redeprivada'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/assistenciaSocialIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.unidade}}</div>
+            </div>
+        </div>
+        <div class="row infos">
+            <div class="col-sm-12 col-md-4">
+                <i class="fa fa-map-pin"></i>
+                {{equip?.endereco}}
+            </div>
+        </div>
+  </div>
+  <div *ngIf="equip.tipo === 'sine'">
+        <div class="row header">
+            <div class="col-3" (click)="back()" class="back">
+                <span>
+                    <i class="fa fa-arrow-left"></i>
+                </span>
+            </div>
+            <div class="col-3">
+                <img [src]="'assets/images/sineIcon.png'" class="equip-logo">
+            </div>
+            <div class="col-6">
+                <div class="title">{{equip?.nome}}</div>
+            </div>
+        </div>
+  </div>
+
+  <div class="row">
+      <div class="avaliacoes offset-md-1">
+            <div *ngFor="let av of avaliacoes">
+                <app-avaliacao-card [avaliacao]="av"></app-avaliacao-card>
+            </div>
+      </div>
+  </div>
+</div>

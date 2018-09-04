@@ -5,12 +5,14 @@ import {MapaComponent} from './pages/mapa/mapa.component';
 import {HomeComponent} from './pages/home/home.component';
 import {SobreComponent} from './pages/sobre/sobre.component';
 import {DadosComponent} from './pages/dados/dados.component';
+import { EquipamentoDetailComponent } from './pages/equipamento-detail/equipamento-detail.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sobre', component: SobreComponent},
   {path: 'dados', component: DadosComponent},
   {path: 'mapa/:lat/:lng', component: MapaComponent},
+  {path: 'comentarios', component: EquipamentoDetailComponent},
   {path: '**', component: PageNotFoundComponent}
 
 ];

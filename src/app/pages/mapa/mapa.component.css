@@ -1,7 +1,7 @@
 .map {
   top: 6vh;
   width: 100vw;
-  height: 94vh;
+  height: 92vh;
   z-index: 0;
 }
 
@@ -28,10 +28,11 @@
   font-size: smaller;
 }
 
-#estFis {
-  text-align: center;
+.infos {
+  padding: 8px;
+  font-size: smaller;
 }
 
-#defId {
-  text-align: center;
+.infos i {
+  margin-right: 8px;
 }

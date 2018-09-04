@@ -19,6 +19,8 @@ import {routing} from './app.routing';
 import {GeoCodingService} from './services/geo-coding.service';
 import { AvaliacaoService } from './services/avaliacao.service';
 import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
+import { EquipamentoDetailComponent } from './pages/equipamento-detail/equipamento-detail.component';
+import { AvaliacaoCardComponent } from './components/avaliacao-card/avaliacao-card.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
     HomeComponent,
     FooterComponent,
     SobreComponent,
-    DadosComponent
+    DadosComponent,
+    EquipamentoDetailComponent,
+    AvaliacaoCardComponent
   ],
   imports: [
     BrowserModule,

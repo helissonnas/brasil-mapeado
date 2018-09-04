@@ -1,0 +1,51 @@
+#header {
+    top: 16px;
+}
+
+.infos {
+    border-top: 1px #b8b8b8 solid;
+    padding-top: 8px; 
+    margin: 16px;
+}
+
+.title {
+    padding-top: 32px;
+    font-size: 28px;
+    font-weight: bolder;
+    color: #1c3f53;
+}
+
+.avaliacoes {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.back {
+    cursor: pointer;
+    margin-top: 32px;
+    font-size: x-large;
+}
+.back i {
+    color: #8f8f8f;
+    border-radius: 100rem;
+    padding: 25px;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+}
+
+.back :hover i {
+    background: rgb(224, 224, 224);
+}
+
+.equip-logo {
+    margin-top: 16px;
+    width: 80px;
+}
+
+@media(max-width:576px){
+    .title {
+        font-size: larger;
+    }
+  }

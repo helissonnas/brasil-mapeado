@@ -1,0 +1,48 @@
+.card {
+    background: #fff;
+    border-radius: 5px;
+    display: inline-block;
+    height: auto;
+    margin: 1rem;
+    position: relative;
+    width: 60vw;
+  }
+
+  .data {
+    position: absolute;
+    font-size: smaller;
+    color: rgb(156, 156, 156);
+  }
+
+  .card-2 {
+    box-shadow: 0 3px 3px rgba(0,0,0,0.16), 0 3px 3px rgba(0,0,0,0.16);
+  }
+
+  .coment {
+    text-align: justify;
+    padding: 16px;
+  }
+
+  .separator {
+    height: 1px;
+    width: 100%;
+    background: rgb(199, 199, 199)
+  }
+
+  .foo {
+    color: rgb(75, 75, 75);
+    padding: 16px;
+  }
+
+  .avaliacao {
+    color: rgb(156, 156, 156);
+    position: absolute;
+    float: right;
+    right: 16px;
+  }
+
+  @media(max-width:576px){
+    .card {
+      width: 90vw;
+    }
+  }
