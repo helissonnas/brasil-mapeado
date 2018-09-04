@@ -51,29 +51,37 @@ export class AvaliacaoCardComponent implements OnInit, OnDestroy {
   }
 
   curtir() {
+    console.log('clicou c');
     if (!this.curtidas.curtiu && !this.curtidas.descurtiu) {
       this.avaliacao.curtidas++;
       this.curtidas.curtiu = true;
+
       this.restCurtir();
     } else if (!this.curtidas.curtiu && this.curtidas.descurtiu) {
       this.avaliacao.curtidas++;
       this.avaliacao.descurtidas--;
+
       this.curtidas.curtiu = true;
       this.curtidas.descurtiu = false;
+
       this.restCurtir();
     }
   }
 
   descurtir() {
+    console.log('clicou d');
     if (!this.curtidas.curtiu && !this.curtidas.descurtiu) {
       this.avaliacao.descurtidas++;
       this.curtidas.descurtiu = true;
+
       this.restDescurtir();
     } else if (this.curtidas.curtiu && !this.curtidas.descurtiu) {
       this.avaliacao.descurtidas++;
       this.avaliacao.curtidas--;
+
       this.curtidas.descurtiu = true;
       this.curtidas.curtiu = false;
+
       this.restDescurtir();
     }
   }
