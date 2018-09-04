@@ -21,6 +21,7 @@ import { AvaliacaoService } from './services/avaliacao.service';
 import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
 import { EquipamentoDetailComponent } from './pages/equipamento-detail/equipamento-detail.component';
 import { AvaliacaoCardComponent } from './components/avaliacao-card/avaliacao-card.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AvaliacaoCardComponent } from './components/avaliacao-card/avaliacao-ca
   ],
   providers: [
     GeoCodingService,
-    AvaliacaoService
+    AvaliacaoService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
