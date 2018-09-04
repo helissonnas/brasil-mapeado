@@ -1,19 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Avaliacao } from '../../models/avaliacao';
+import { AvaliacaoService } from '../../services/avaliacao.service';
 
 @Component({
   selector: 'app-avaliacao-card',
   templateUrl: './avaliacao-card.component.html',
   styleUrls: ['./avaliacao-card.component.css']
 })
-export class AvaliacaoCardComponent implements OnInit {
+export class AvaliacaoCardComponent implements OnInit, OnDestroy {
 
   @Input()
   avaliacao: Avaliacao;
+  curtidas = {curtiu: false, descurtiu: false};
 
-  constructor() { }
+  constructor(private avaServ: AvaliacaoService) { }
 
   ngOnInit() {
+    const aux = JSON.parse(sessionStorage.getItem(this.avaliacao.id.toString()));
+    if (aux) {
+      this.curtidas = aux;
+    }
+  }
+
+  ngOnDestroy(): void {
+    sessionStorage.setItem(this.avaliacao.id.toString(), JSON.stringify(this.curtidas));
   }
 
   analisaDesempenho(valor) {
@@ -38,5 +48,45 @@ export class AvaliacaoCardComponent implements OnInit {
     }
     const ano = data.getFullYear();
     return dia + '/' + mes + '/' + ano;
+  }
+
+  curtir() {
+    if (!this.curtidas.curtiu && !this.curtidas.descurtiu) {
+      this.avaliacao.curtidas++;
+      this.curtidas.curtiu = true;
+      this.restCurtir();
+    } else if (!this.curtidas.curtiu && this.curtidas.descurtiu) {
+      this.avaliacao.curtidas++;
+      this.avaliacao.descurtidas--;
+      this.curtidas.curtiu = true;
+      this.curtidas.descurtiu = false;
+      this.restCurtir();
+    }
+  }
+
+  descurtir() {
+    if (!this.curtidas.curtiu && !this.curtidas.descurtiu) {
+      this.avaliacao.descurtidas++;
+      this.curtidas.descurtiu = true;
+      this.restDescurtir();
+    } else if (this.curtidas.curtiu && !this.curtidas.descurtiu) {
+      this.avaliacao.descurtidas++;
+      this.avaliacao.curtidas--;
+      this.curtidas.descurtiu = true;
+      this.curtidas.curtiu = false;
+      this.restDescurtir();
+    }
+  }
+
+  restCurtir() {
+    this.avaServ.curtir(this.avaliacao).then((resolve) => {
+      this.avaliacao = resolve.data;
+    });
+  }
+
+  restDescurtir() {
+    this.avaServ.descurtir(this.avaliacao).then((resolve) => {
+      this.avaliacao = resolve.data;
+    });
   }
 }

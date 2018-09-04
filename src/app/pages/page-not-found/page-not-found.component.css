@@ -40,3 +40,17 @@ h2 {
   color: #080911;
   background: #33a5dd !important;
 }
+
+@media (max-height: 675px) {
+  #astro {
+    top: 0vh;
+  }
+
+  h1 {
+    font-size: 80px;
+  }
+
+  #bloco-1 {
+    top: 0vh;
+  }
+}

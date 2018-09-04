@@ -41,6 +41,11 @@
     right: 16px;
   }
 
+  span {
+    cursor: pointer;
+    margin-right: 8px;
+  }
+
   @media(max-width:576px){
     .card {
       width: 90vw;

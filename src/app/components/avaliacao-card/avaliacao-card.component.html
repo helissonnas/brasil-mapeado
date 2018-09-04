@@ -21,8 +21,8 @@
             {{avaliacao.telefoneAvaliador}}
       </div>
       <div class="col-5 pull-right  curt-row">
-            {{avaliacao.curtidas}} <i class="fa fa-thumbs-o-up"></i>
-            {{avaliacao.descurtidas}} <i class="fa fa-thumbs-o-down"></i>
+            <span (click)="curtir()">{{avaliacao.curtidas}} <i class="fa fa-thumbs-o-up"></i></span>
+            <span (click)="descurtir()">{{avaliacao.descurtidas}} <i class="fa fa-thumbs-o-down"></i></span>
       </div>
     </div>
   </div>
