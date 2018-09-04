@@ -11,7 +11,10 @@ export class RestService {
   private BASE_URL = environment.api.baseApi;
   private RESOURCE;
 
-  constructor(resource) {
+  constructor() {
+  }
+
+  setResource(resource) {
     this.RESOURCE = `${this.BASE_URL}/${resource}`;
   }
 

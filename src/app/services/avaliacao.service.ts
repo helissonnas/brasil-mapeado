@@ -8,7 +8,8 @@ import { Avaliacao } from '../models/avaliacao';
 export class AvaliacaoService extends RestService {
 
   constructor() {
-    super('avaliacao');
+    super();
+    super.setResource('avaliacao');
    }
 
    getAllByServico(id) {
